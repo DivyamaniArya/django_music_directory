@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import Track, Artist, Album, Customer, Employee, Genre, Invoice, MediaType, Playlist, InvoiceItem
+from .models import (Album, Artist, Customer, Employee, Genre, Invoice,
+                     InvoiceItem, MediaType, Playlist, Track)
 
 
 class TrackSerializer(ModelSerializer):

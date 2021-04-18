@@ -1,7 +1,6 @@
-from django.urls import path, include
+from django.urls import include, path
 
 from .views import *
-
 
 track_urlpatterns = [
     path('.list', TrackListView.as_view(), name='track-list'),

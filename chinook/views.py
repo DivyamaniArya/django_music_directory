@@ -1,16 +1,19 @@
-from rest_framework.generics import DestroyAPIView, ListAPIView, UpdateAPIView, RetrieveAPIView
-from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
-from rest_framework.filters import SearchFilter
 from django.db.models import Q
 from drf_yasg2 import openapi
 from drf_yasg2.utils import swagger_auto_schema
+from rest_framework.filters import SearchFilter
+from rest_framework.generics import (DestroyAPIView, ListAPIView,
+                                     RetrieveAPIView, UpdateAPIView)
+from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
 
-from .models import (Track, Artist, Album, Customer, Employee,
-                     Genre, Invoice, MediaType, Playlist, InvoiceItem)
-from .serializers import (TrackSerializer, TrackUpdateSerializer, ArtistSerializer,
-                          AlbumSerializer, CustomerSerializer, EmployeeSerializer,
-                          GenreSerializer, InvoiceSerializer, MediaTypeSerializer,
-                          PlaylistSerializer, InvoiceItemSerializer)
+from .models import (Album, Artist, Customer, Employee, Genre, Invoice,
+                     InvoiceItem, MediaType, Playlist, Track)
+from .serializers import (AlbumSerializer, ArtistSerializer,
+                          CustomerSerializer, EmployeeSerializer,
+                          GenreSerializer, InvoiceItemSerializer,
+                          InvoiceSerializer, MediaTypeSerializer,
+                          PlaylistSerializer, TrackSerializer,
+                          TrackUpdateSerializer)
 
 
 class TrackListView(ListAPIView):
