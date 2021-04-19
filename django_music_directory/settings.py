@@ -123,3 +123,10 @@ STATIC_URL = '/static/'
 #         "Bearer": {"type": "apiKey", "name": "Authorization", "in": "header"}
 #     },
 # }
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'django_music_directory.renderer.ResponseRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
+}

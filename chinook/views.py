@@ -4,7 +4,7 @@ from drf_yasg2.utils import swagger_auto_schema
 from rest_framework.filters import SearchFilter
 from rest_framework.generics import (DestroyAPIView, ListAPIView,
                                      RetrieveAPIView, UpdateAPIView)
-from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
+
 
 from .models import (Album, Artist, Customer, Employee, Genre, Invoice,
                      InvoiceItem, MediaType, Playlist, Track)
@@ -22,7 +22,6 @@ class TrackListView(ListAPIView):
     queryset = Track.objects.all()
     filter_backends = [SearchFilter]
     search_fields = ["name", "composer", "genre_id__name"]
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_queryset(self):
         search_query = self.request.query_params.get('search')
@@ -48,7 +47,6 @@ class TrackListView(ListAPIView):
 class TrackUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = TrackUpdateSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         track_id = self.kwargs.get('track_id', None)
@@ -62,7 +60,6 @@ class TrackUpdateView(UpdateAPIView):
 class TrackDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = TrackSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         track_id = self.kwargs.get('track_id', None)
@@ -76,7 +73,6 @@ class TrackDetailsView(RetrieveAPIView):
 class TrackDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = TrackSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         track_id = self.kwargs.get('track_id', None)
@@ -91,7 +87,6 @@ class ArtistListView(ListAPIView):
     http_method_names = ['get']
     serializer_class = ArtistSerializer
     queryset = Artist.objects.all()
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     @swagger_auto_schema(tags=["Artist"])
     def get(self, request, *args, **kwargs):
@@ -101,7 +96,6 @@ class ArtistListView(ListAPIView):
 class ArtistUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = ArtistSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         artist_id = self.kwargs.get('artist_id', None)
@@ -115,7 +109,6 @@ class ArtistUpdateView(UpdateAPIView):
 class ArtistDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = ArtistSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         artist_id = self.kwargs.get('artist_id', None)
@@ -129,7 +122,6 @@ class ArtistDetailsView(RetrieveAPIView):
 class ArtistDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = ArtistSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         artist_id = self.kwargs.get('artist_id', None)
@@ -144,7 +136,6 @@ class AlbumListView(ListAPIView):
     http_method_names = ['get']
     serializer_class = AlbumSerializer
     queryset = Album.objects.all()
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     @swagger_auto_schema(tags=["Album"])
     def get(self, request, *args, **kwargs):
@@ -154,7 +145,6 @@ class AlbumListView(ListAPIView):
 class AlbumUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = AlbumSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         album_id = self.kwargs.get('album_id', None)
@@ -168,7 +158,6 @@ class AlbumUpdateView(UpdateAPIView):
 class AlbumDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = AlbumSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         album_id = self.kwargs.get('album_id', None)
@@ -182,7 +171,6 @@ class AlbumDetailsView(RetrieveAPIView):
 class AlbumDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = AlbumSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         album_id = self.kwargs.get('album_id', None)
@@ -197,7 +185,6 @@ class CustomerListView(ListAPIView):
     http_method_names = ['get']
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     @swagger_auto_schema(tags=["Customer"])
     def get(self, request, *args, **kwargs):
@@ -207,7 +194,6 @@ class CustomerListView(ListAPIView):
 class CustomerUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = CustomerSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         customer_id = self.kwargs.get('customer_id', None)
@@ -221,7 +207,6 @@ class CustomerUpdateView(UpdateAPIView):
 class CustomerDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = CustomerSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         customer_id = self.kwargs.get('customer_id', None)
@@ -235,7 +220,6 @@ class CustomerDetailsView(RetrieveAPIView):
 class CustomerDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = CustomerSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         customer_id = self.kwargs.get('customer_id', None)
@@ -250,7 +234,6 @@ class EmployeeListView(ListAPIView):
     http_method_names = ['get']
     serializer_class = EmployeeSerializer
     queryset = Employee.objects.all()
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     @swagger_auto_schema(tags=["Employee"])
     def get(self, request, *args, **kwargs):
@@ -260,7 +243,6 @@ class EmployeeListView(ListAPIView):
 class EmployeeUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = EmployeeSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         employee_id = self.kwargs.get('employee_id', None)
@@ -274,7 +256,6 @@ class EmployeeUpdateView(UpdateAPIView):
 class EmployeeDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = EmployeeSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         employee_id = self.kwargs.get('employee_id', None)
@@ -288,7 +269,6 @@ class EmployeeDetailsView(RetrieveAPIView):
 class EmployeeDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = EmployeeSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         employee_id = self.kwargs.get('employee_id', None)
@@ -303,7 +283,6 @@ class GenreListView(ListAPIView):
     http_method_names = ['get']
     serializer_class = GenreSerializer
     queryset = Genre.objects.all()
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     @swagger_auto_schema(tags=["Genre"])
     def get(self, request, *args, **kwargs):
@@ -313,7 +292,6 @@ class GenreListView(ListAPIView):
 class GenreUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = GenreSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         genre_id = self.kwargs.get('genre_id', None)
@@ -327,7 +305,6 @@ class GenreUpdateView(UpdateAPIView):
 class GenreDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = GenreSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         genre_id = self.kwargs.get('genre_id', None)
@@ -341,7 +318,6 @@ class GenreDetailsView(RetrieveAPIView):
 class GenreDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = GenreSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         genre_id = self.kwargs.get('genre_id', None)
@@ -356,7 +332,6 @@ class InvoiceListView(ListAPIView):
     http_method_names = ['get']
     serializer_class = InvoiceSerializer
     queryset = Invoice.objects.all()
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     @swagger_auto_schema(tags=["Invoice"])
     def get(self, request, *args, **kwargs):
@@ -366,7 +341,6 @@ class InvoiceListView(ListAPIView):
 class InvoiceUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = InvoiceSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         invoice_id = self.kwargs.get('invoice_id', None)
@@ -380,7 +354,6 @@ class InvoiceUpdateView(UpdateAPIView):
 class InvoiceDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = InvoiceSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         invoice_id = self.kwargs.get('invoice_id', None)
@@ -394,7 +367,6 @@ class InvoiceDetailsView(RetrieveAPIView):
 class InvoiceDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = InvoiceSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         invoice_id = self.kwargs.get('invoice_id', None)
@@ -409,7 +381,6 @@ class MediaTypeListView(ListAPIView):
     http_method_names = ['get']
     serializer_class = MediaTypeSerializer
     queryset = MediaType.objects.all()
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     @swagger_auto_schema(tags=["MediaType"])
     def get(self, request, *args, **kwargs):
@@ -419,7 +390,6 @@ class MediaTypeListView(ListAPIView):
 class MediaTypeUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = MediaTypeSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         media_type_id = self.kwargs.get('media_type_id', None)
@@ -433,7 +403,6 @@ class MediaTypeUpdateView(UpdateAPIView):
 class MediaTypeDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = MediaTypeSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         media_type_id = self.kwargs.get('media_type_id', None)
@@ -447,7 +416,6 @@ class MediaTypeDetailsView(RetrieveAPIView):
 class MediaTypeDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = MediaTypeSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         media_type_id = self.kwargs.get('media_type_id', None)
@@ -462,7 +430,6 @@ class PlaylistListView(ListAPIView):
     http_method_names = ['get']
     serializer_class = PlaylistSerializer
     queryset = Playlist.objects.all()
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     @swagger_auto_schema(tags=["Playlist"])
     def get(self, request, *args, **kwargs):
@@ -472,7 +439,6 @@ class PlaylistListView(ListAPIView):
 class PlaylistUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = PlaylistSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         playlist_id = self.kwargs.get('playlist_id', None)
@@ -486,7 +452,6 @@ class PlaylistUpdateView(UpdateAPIView):
 class PlaylistDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = PlaylistSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         playlist_id = self.kwargs.get('playlist_id', None)
@@ -500,7 +465,6 @@ class PlaylistDetailsView(RetrieveAPIView):
 class PlaylistDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = PlaylistSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         playlist_id = self.kwargs.get('playlist_id', None)
@@ -515,7 +479,6 @@ class InvoiceItemListView(ListAPIView):
     http_method_names = ['get']
     serializer_class = InvoiceItemSerializer
     queryset = InvoiceItem.objects.all()
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     @swagger_auto_schema(tags=["InvoiceItem"])
     def get(self, request, *args, **kwargs):
@@ -525,7 +488,6 @@ class InvoiceItemListView(ListAPIView):
 class InvoiceItemUpdateView(UpdateAPIView):
     http_method_names = ['post']
     serializer_class = InvoiceItemSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         invoice_line_id = self.kwargs.get('invoice_line_id', None)
@@ -539,7 +501,6 @@ class InvoiceItemUpdateView(UpdateAPIView):
 class InvoiceItemDetailsView(RetrieveAPIView):
     http_method_names = ['get']
     serializer_class = InvoiceItemSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         invoice_line_id = self.kwargs.get('invoice_line_id', None)
@@ -553,7 +514,6 @@ class InvoiceItemDetailsView(RetrieveAPIView):
 class InvoiceItemDestroyView(DestroyAPIView):
     http_method_names = ['delete']
     serializer_class = InvoiceItemSerializer
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 
     def get_object(self):
         invoice_line_id = self.kwargs.get('invoice_line_id', None)
